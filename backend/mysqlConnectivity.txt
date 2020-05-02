@@ -1,0 +1,2 @@
+CREATE USER 'addnewuser'@'198.168.1.1' IDENTIFIED BY 'abc';
+GRANT ALL PRIVILEGES ON * . * TO 'addnewuser'@'198.168.1.1';
