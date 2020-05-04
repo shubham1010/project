@@ -1,10 +1,19 @@
 version: '3'
 services:
-
-  db:
-    container_name: mysql_db
+  goapi:
+    build: .
+    image: temp
+    container_name: user-testing
     restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      static_ip:
+        ipv4_address: 198.168.1.2
+  db:
     image: mysql:8.0.2
+    container_name: app-db
+    restart: always
     ports:
       - "3360:3306"
     expose:
@@ -14,25 +23,12 @@ services:
       MYSQL_HOST: ${HOST}
       MYSQL_USER: ${USER}
       MYSQL_PASSWORD: ${UPASS}
-      MYSQL_DB: ${DBNAME}
+      MYSQL_DATABASE: ${DBNAME}
     volumes:
       - "./data:/var/lib/mysql:rw"
     networks:
       static_ip:
-        ipv4_address: 198.168.1.1
-
-  goweb:
-    build: ./backend/users
-    image: users
-    container_name: go-user-test
-    restart: always
-    ports:
-      - "8080:8080"
-    depends_on:
-      - db
-    networks:
-      static_ip:
-        ipv4_address: 198.168.1.2
+        ipv4_address: 198.168.1.3
 
 networks:
   static_ip:

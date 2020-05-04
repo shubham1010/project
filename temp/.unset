@@ -1,0 +1,5 @@
+unset RPASS
+unset HOST
+unset USER
+unset UPASS
+unset DBNAME

@@ -1,0 +1,5 @@
+export RPASS=root
+export HOST=198.168.1.1
+export USER=shubham
+export UPASS=1010
+export DBNAME=demo

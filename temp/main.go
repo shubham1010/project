@@ -2,17 +2,28 @@ package main
 
 import (
 	"net/http"
-	"fmt"
 
-	"github.com/shubham1010/project/temp/controller"
+	"github.com/shubham1010/project/temp/routers"
+	"github.com/shubham1010/project/temp/common"
 
-	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
+
 )
 
 func main() {
-	router := mux.NewRouter();
-	router.HandleFunc("/",controller.Hello).Methods("GET")
+	log.Info("[MAIN]: Starting App")
+	common.StartUp()
+	log.Info("[COMMON]: Configuration is Done")
 
-	http.ListenAndServe(":8080",router)
-	fmt.Println("Listening on port 8080..")
+	router := routers.InitRouting()
+	log.Info("[ROUTES]: Initailized")
+
+	server := &http.Server {
+        Addr: common.Env.Server,
+        Handler: router,
+    }
+
+	log.Info("[LISTENING]: Port 8080")
+    server.ListenAndServe()
+
 }

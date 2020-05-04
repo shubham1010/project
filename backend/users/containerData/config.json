@@ -1,7 +1,0 @@
-{
-	"Server"		: "0.0.0.0:8080",
-	"MYSQLDBServer"	: "198.168.1.1:3306",
-	"MYSQLDBUser"	: "addnewuser",
-	"MYSQLDBPwd"	: "1010",
-	"Database"		: "mydb"
-}
